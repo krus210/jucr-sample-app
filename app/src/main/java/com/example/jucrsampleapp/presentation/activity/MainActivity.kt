@@ -1,4 +1,4 @@
-package com.example.jucrsampleapp
+package com.example.jucrsampleapp.presentation.activity
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
