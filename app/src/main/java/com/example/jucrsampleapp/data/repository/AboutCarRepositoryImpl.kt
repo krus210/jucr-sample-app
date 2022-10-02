@@ -1,6 +1,7 @@
 package com.example.jucrsampleapp.data.repository
 
 import com.example.jucrsampleapp.data.model.CarInfoResponse
+import com.example.jucrsampleapp.data.model.LocationRequest
 import com.example.jucrsampleapp.data.model.NearbySuperchargeResponse
 import com.example.jucrsampleapp.data.model.StatisticResponse
 import kotlinx.coroutines.CoroutineDispatcher
@@ -27,7 +28,7 @@ class AboutCarRepositoryImpl
         }
     }
 
-    override suspend fun getNearbySupercharges(): List<NearbySuperchargeResponse> {
+    override suspend fun getNearbySupercharges(locationRequest: LocationRequest): List<NearbySuperchargeResponse> {
         return withContext(coroutineDispatcher) {
             delay(2000)
             getMockNearbySuperCharges()

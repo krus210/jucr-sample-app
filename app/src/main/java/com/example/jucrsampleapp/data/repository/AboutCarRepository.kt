@@ -1,6 +1,7 @@
 package com.example.jucrsampleapp.data.repository
 
 import com.example.jucrsampleapp.data.model.CarInfoResponse
+import com.example.jucrsampleapp.data.model.LocationRequest
 import com.example.jucrsampleapp.data.model.NearbySuperchargeResponse
 import com.example.jucrsampleapp.data.model.StatisticResponse
 
@@ -10,5 +11,5 @@ interface AboutCarRepository {
 
     suspend fun getStatistics(): List<StatisticResponse>
 
-    suspend fun getNearbySupercharges(): List<NearbySuperchargeResponse>
+    suspend fun getNearbySupercharges(locationRequest: LocationRequest): List<NearbySuperchargeResponse>
 }
