@@ -39,7 +39,6 @@ class AboutCarRepositoryImpl
         return CarInfoResponse(
             image = "hyandai_suv",
             background = "red",
-            status = CarInfoResponse.StatusDto.CHARGING,
             collapsingTitle = "Good morning, Billy",
             collapsingSubtitle = "Charging your car...",
             title = "Tesla Model X",
