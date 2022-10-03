@@ -4,7 +4,7 @@ import androidx.annotation.StringRes
 import com.example.jucrsampleapp.R
 
 data class AboutCarState(
-    val carInfoState: CarInfoState = CarInfoState.Loading(isCollapsed = true),
+    val carInfoState: CarInfoState = CarInfoState.Loading(isCollapsed = false),
     @StringRes val statisticTitle: Int = R.string.statistics_title,
     val statisticsState: StatisticsState = StatisticsState.Loading,
     @StringRes val nearbySuperchargesTitle: Int = R.string.nearby_supercharger_title,

@@ -11,6 +11,6 @@ sealed class StatisticsState {
     object Loading: StatisticsState()
 
     data class Error(
-        val message: String
+        val message: String?
     ): StatisticsState()
 }
