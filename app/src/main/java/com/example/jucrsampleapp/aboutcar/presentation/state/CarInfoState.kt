@@ -16,7 +16,7 @@ sealed class CarInfoState(
     ): CarInfoState(isCollapsed)
 
     data class Error(
-        val message: String,
+        val message: String?,
         override val isCollapsed: Boolean
     ): CarInfoState(isCollapsed)
 }

@@ -11,6 +11,6 @@ sealed class NearbySuperchargesState {
     object Loading: NearbySuperchargesState()
 
     data class Error(
-        val message: String
+        val message: String?
     ): NearbySuperchargesState()
 }

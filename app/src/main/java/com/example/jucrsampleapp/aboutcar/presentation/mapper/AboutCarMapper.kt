@@ -15,42 +15,48 @@ class AboutCarMapper
     private val resourcesWrapper: ResourcesWrapper
 ){
 
-    fun CarInfoResponse.mapToCarInfo(): CarInfo {
-        return CarInfo(
-            image = resourcesWrapper.getDrawableIdentifier(this.image) ?: R.drawable.hyandai_suv,
-            background = resourcesWrapper.getColorIdentifier(this.background) ?: R.color.red,
-            collapsingTitle = this.collapsingTitle,
-            collapsingSubtitle = this.collapsingSubtitle,
-            title = this.title,
-            subtitle = this.subtitle,
-            chargePercent = this.chargePercent,
-            timeToEnd = CarInfo.TimeToEnd(
-                title = this.timeToEnd.title,
-                value = this.timeToEnd.value
+    fun mapToCarInfo(response: CarInfoResponse): CarInfo {
+        with (response) {
+            return CarInfo(
+                image = resourcesWrapper.getDrawableIdentifier(image) ?: R.drawable.hyandai_suv,
+                background = resourcesWrapper.getColorIdentifier(background) ?: R.color.red,
+                collapsingTitle = collapsingTitle,
+                collapsingSubtitle = collapsingSubtitle,
+                title = title,
+                subtitle = subtitle,
+                chargePercent = chargePercent,
+                timeToEnd = CarInfo.TimeToEnd(
+                    title = timeToEnd.title,
+                    value = timeToEnd.value
+                )
             )
-        )
+        }
     }
 
-    fun StatisticResponse.mapToStatistic(): Statistic {
-        return Statistic(
-            id = this.id,
-            icon = resourcesWrapper.getDrawableIdentifier(this.icon) ?: R.drawable.battery_charge_solid,
-            tint = resourcesWrapper.getColorIdentifier(this.tint) ?: R.color.green,
-            title = this.title,
-            subtitle = this.subtitle,
-            deeplink = this.deeplink
-        )
+    fun mapToStatistic(response: StatisticResponse): Statistic {
+        with (response) {
+            return Statistic(
+                id = id,
+                icon = resourcesWrapper.getDrawableIdentifier(icon) ?: R.drawable.battery_charge_solid,
+                tint = resourcesWrapper.getColorIdentifier(tint) ?: R.color.green,
+                title = title,
+                subtitle = subtitle,
+                deeplink = deeplink
+            )
+        }
     }
 
-    fun NearbySuperchargeResponse.mapToNearbySupercharge(): NearbySupercharge {
-        return NearbySupercharge(
-            id = this.id,
-            title = this.title,
-            subtitle = this.subtitle,
-            distance = this.distance,
-            icon = resourcesWrapper.getDrawableIdentifier(this.icon) ?: R.drawable.location_dot_solid,
-            tint = resourcesWrapper.getColorIdentifier(this.tint) ?: R.color.grey,
-            deeplink = this.deeplink
-        )
+    fun mapToNearbySupercharge(response: NearbySuperchargeResponse): NearbySupercharge {
+        with (response) {
+            return NearbySupercharge(
+                id = id,
+                title = title,
+                subtitle = subtitle,
+                distance = distance,
+                icon = resourcesWrapper.getDrawableIdentifier(icon) ?: R.drawable.location_dot_solid,
+                tint = resourcesWrapper.getColorIdentifier(tint) ?: R.color.grey,
+                deeplink = deeplink
+            )
+        }
     }
 }
