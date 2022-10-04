@@ -36,6 +36,10 @@ class AboutCarViewModel
         loadNearbySupercharges()
     }
 
+    fun onCollapseClick() {
+
+    }
+
     fun loadCarInfo(isCollapsed: Boolean) {
         viewModelScope.launch {
             _state.value = _state.value.copy(

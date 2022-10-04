@@ -1,5 +1,6 @@
 package com.example.jucrsampleapp.navigation
 
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Icon
@@ -29,7 +30,7 @@ fun BottomNavigationBar(
     BottomNavigation(
         modifier = Modifier
             .clip(MaterialTheme.shapes.large),
-        backgroundColor = LightGrayColor,
+        backgroundColor = MaterialTheme.colors.surface,
         elevation = 12.dp
     ) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
@@ -55,7 +56,7 @@ fun BottomNavigationBar(
                     }
                 },
                 selectedContentColor = MaterialTheme.colors.primary,
-                unselectedContentColor = Color.Gray
+                unselectedContentColor = MaterialTheme.colors.onSurface
             )
         }
     }
