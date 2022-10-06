@@ -1,0 +1,162 @@
+{
+  ConstraintSets: {
+    start: {
+      background_box: {
+        width: 'spread',
+        height: 'spread',
+        start: ['parent', 'start'],
+        end: ['parent', 'end'],
+        top: ['parent', 'top'],
+        bottom: ['parent', 'bottom']
+      },
+      bottom_box_start: {
+        width: 'spread',
+        height: 40,
+        start: ['background_box', 'start'],
+        end: ['central_bottom_box', 'start'],
+        bottom: ['background_box', 'bottom']
+      },
+      bottom_box_end: {
+        width: 'spread',
+        height: 40,
+        start: ['central_bottom_box', 'end'],
+        end: ['background_box', 'end'],
+        bottom: ['background_box', 'bottom']
+      },
+      central_bottom_box: {
+        width: 120,
+        height: 40,
+        centerHorizontally: 'background_box',
+        bottom: ['background_box', 'bottom']
+      },
+      percent: {
+        centerHorizontally: 'background_box',
+        bottom: ['background_box', 'bottom', 24],
+        alpha: 1.0,
+        scaleX: 1.0,
+        scaleY: 1.0
+      },
+      bolt_icon: {
+        width: 16,
+        height: 16,
+        centerHorizontally: 'background_box',
+        bottom: ['percent', 'top', 4],
+        alpha: 1.0,
+      },
+      end_to_time: {
+        centerHorizontally: 'background_box',
+        bottom: ['bolt_icon', 'top', 24],
+        visibility: 'visible',
+      },
+      car_pic: {
+        width: 300,
+        height: 'spread',
+        centerHorizontally: 'parent',
+        bottom: ['end_to_time', 'top', 8],
+        top: ['collapse_subtitle', 'top', 32]
+      },
+      collapse_title: {
+        top: ['background_box', 'top', 16],
+        centerHorizontally: 'background_box',
+        visibility: 'visible',
+      },
+      collapse_subtitle: {
+        top: ['collapse_title', 'bottom', 8],
+        centerHorizontally: 'background_box',
+        visibility: 'visible'
+      },
+      title: {
+        visibility: 'gone'
+      },
+      subtitle: {
+        visibility: 'gone'
+      },
+      button: {
+        visibility: 'gone'
+      },
+      circle: {
+        bottom: ['background_box', 'bottom', 28],
+        centerHorizontally: 'background_box',
+        visibility: 'visible',
+      }
+    },
+    end: {
+      background_box: {
+        width: 'spread',
+        height: 'spread',
+        start: ['parent', 'start'],
+        end: ['parent', 'end'],
+        top: ['parent', 'top'],
+        bottom: ['parent', 'bottom']
+      },
+      bottom_box_start: {
+        width: 'spread',
+        height: 40,
+        start: ['background_box', 'start'],
+        end: ['central_bottom_box', 'start'],
+        bottom: ['background_box', 'bottom']
+      },
+      bottom_box_end: {
+        width: 'spread',
+        height: 40,
+        start: ['central_bottom_box', 'end'],
+        end: ['background_box', 'end'],
+        bottom: ['background_box', 'bottom']
+      },
+      central_bottom_box: {
+        width: 120,
+        height: 40,
+        centerHorizontally: 'background_box',
+        bottom: ['background_box', 'bottom']
+      },
+      percent: {
+        start: ['bolt_icon', 'end'],
+        centerVertically: 'subtitle',
+        alpha: 0.6,
+        scaleX: 0.6,
+        scaleY: 0.6,
+      },
+      bolt_icon: {
+        width: 8,
+        height: 8,
+        centerVertically: 'subtitle',
+        start: ['subtitle', 'end', 4],
+        alpha: 0.6,
+      },
+      end_to_time: {
+        visibility: 'gone'
+      },
+      car_pic: {
+        width: 150,
+        height: 'spread',
+        end: ['background_box', 'end', 16],
+        bottom: ['central_bottom_box', 'top', 16],
+        top: ['background_box', 'top', 8]
+      },
+      collapse_title: {
+        visibility: 'gone',
+      },
+      collapse_subtitle: {
+        visibility: 'gone'
+      },
+      title: {
+        top: ['background_box', 'top', 16],
+        start: ['background_box', 'start', 16],
+        visibility: 'visible'
+      },
+      subtitle: {
+        top: ['title', 'bottom', 4],
+        start: ['background_box', 'start', 16],
+        visibility: 'visible'
+      },
+      button: {
+        bottom: ['background_box', 'bottom', 16],
+        centerHorizontally: 'background_box',
+        visibility: 'visible'
+      },
+      circle: {
+        visibility: 'gone',
+      }
+    }
+  }
+}

@@ -37,7 +37,7 @@ class AboutCarRepositoryImpl
 
     private fun getMockCarInfoResponse(): CarInfoResponse {
         return CarInfoResponse(
-            image = "hyandai_suv",
+            image = "car_side_solid",
             background = "red",
             collapsingTitle = "Good morning, Billy",
             collapsingSubtitle = "Charging your car...",
@@ -83,7 +83,7 @@ class AboutCarRepositoryImpl
     private fun getMockNearbySuperCharges(): List<NearbySuperchargeResponse> {
         return listOf(
             NearbySuperchargeResponse(
-                id = 1,
+                id = 4,
                 title = "Ranchview Dr.Richardson",
                 subtitle = "4/10 available",
                 distance = "1.2 km",
@@ -92,7 +92,7 @@ class AboutCarRepositoryImpl
                 deeplink = null
             ),
             NearbySuperchargeResponse(
-                id = 2,
+                id = 5,
                 title = "Thornridge Cir. Shiloh",
                 subtitle = "5/10 available",
                 distance = "2.6 km",
@@ -101,7 +101,7 @@ class AboutCarRepositoryImpl
                 deeplink = null
             ),
             NearbySuperchargeResponse(
-                id = 3,
+                id = 6,
                 title = "Elgin St. Celina",
                 subtitle = "8/10 available",
                 distance = "4.3 km",
@@ -110,7 +110,43 @@ class AboutCarRepositoryImpl
                 deeplink = null
             ),
             NearbySuperchargeResponse(
-                id = 4,
+                id = 7,
+                title = "Westheimer Rd. Santa Ana",
+                subtitle = "3/10 available",
+                distance = "5.4 km",
+                icon = "location_dot_solid",
+                tint = "gray",
+                deeplink = null
+            ),
+            NearbySuperchargeResponse(
+                id = 8,
+                title = "Ranchview Dr.Richardson",
+                subtitle = "4/10 available",
+                distance = "1.2 km",
+                icon = "location_dot_solid",
+                tint = "gray",
+                deeplink = null
+            ),
+            NearbySuperchargeResponse(
+                id = 9,
+                title = "Thornridge Cir. Shiloh",
+                subtitle = "5/10 available",
+                distance = "2.6 km",
+                icon = "location_dot_solid",
+                tint = "gray",
+                deeplink = null
+            ),
+            NearbySuperchargeResponse(
+                id = 10,
+                title = "Elgin St. Celina",
+                subtitle = "8/10 available",
+                distance = "4.3 km",
+                icon = "location_dot_solid",
+                tint = "gray",
+                deeplink = null
+            ),
+            NearbySuperchargeResponse(
+                id = 11,
                 title = "Westheimer Rd. Santa Ana",
                 subtitle = "3/10 available",
                 distance = "5.4 km",

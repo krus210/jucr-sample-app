@@ -3,7 +3,7 @@ package com.example.jucrsampleapp.aboutcar.presentation.model
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 
-data class CarInfo(
+data class CarInfoModel(
     @DrawableRes val image: Int,
     @ColorRes val background: Int,
     val collapsingTitle: String,

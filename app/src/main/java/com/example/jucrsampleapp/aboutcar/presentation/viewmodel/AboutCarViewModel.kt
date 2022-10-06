@@ -9,11 +9,10 @@ import com.example.jucrsampleapp.aboutcar.domain.NearbySuperchargesUseCase
 import com.example.jucrsampleapp.aboutcar.domain.StatisticsUseCase
 import com.example.jucrsampleapp.aboutcar.presentation.mapper.AboutCarMapper
 import com.example.jucrsampleapp.aboutcar.presentation.state.AboutCarState
-import com.example.jucrsampleapp.aboutcar.presentation.state.CarInfoState
-import com.example.jucrsampleapp.aboutcar.presentation.state.NearbySuperchargesState
-import com.example.jucrsampleapp.aboutcar.presentation.state.StatisticsState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.supervisorScope
 import javax.inject.Inject
 
 @HiltViewModel
@@ -25,81 +24,43 @@ class AboutCarViewModel
     private val mapper: AboutCarMapper
 ): ViewModel() {
 
-    private val _state = mutableStateOf(
-        value = AboutCarState()
+    private val _state = mutableStateOf<AboutCarState>(
+        value = AboutCarState.Loading
     )
     val state: State<AboutCarState> = _state
 
     init {
-        loadCarInfo(isCollapsed = false)
-        loadStatistics()
-        loadNearbySupercharges()
+        loadData()
     }
 
-    fun onCollapseClick() {
 
-    }
-
-    fun loadCarInfo(isCollapsed: Boolean) {
+    fun loadData() {
         viewModelScope.launch {
-            _state.value = _state.value.copy(
-                carInfoState = CarInfoState.Loading(isCollapsed)
-            )
-            try {
-                val carInfo = mapper.mapToCarInfo(carInfoUseCase.get())
-                _state.value = _state.value.copy(
-                    carInfoState = CarInfoState.Success(
-                        data = carInfo,
-                        isCollapsed = isCollapsed
+            _state.value = AboutCarState.Loading
+            supervisorScope {
+                val carInfo = async {
+                    mapper.mapToCarInfo(carInfoUseCase.get())
+                }
+                val statistics = async {
+                    mapper.mapToStatistics(statisticsUseCase.get())
+                }
+                val nearbyCharges = async {
+                    mapper.mapToNearbySupercharges(nearbySuperchargesUseCase.get())
+                }
+                try {
+                    val data = mutableListOf(
+                        mapper.mapToStatisticsTile(),
+                        statistics.await(),
+                        mapper.mapToNearbySuperchargesTile(),
                     )
-                )
-            } catch (e: Throwable) {
-                _state.value = _state.value.copy(
-                    carInfoState = CarInfoState.Error(
-                        e.message,
-                        isCollapsed
+                    data.addAll(nearbyCharges.await())
+                    _state.value = AboutCarState.Success(
+                        carInfo.await(),
+                        data
                     )
-                )
-            }
-        }
-    }
-
-    fun loadStatistics() {
-        viewModelScope.launch {
-            _state.value = _state.value.copy(
-                statisticsState = StatisticsState.Loading
-            )
-            try {
-                val statistics = statisticsUseCase.get().map { mapper.mapToStatistic(it) }
-                _state.value = _state.value.copy(
-                    statisticsState = StatisticsState.Success(
-                        data = statistics
-                    )
-                )
-            } catch (e: Throwable) {
-                _state.value = _state.value.copy(
-                    statisticsState = StatisticsState.Error(e.message)
-                )
-            }
-        }
-    }
-
-    fun loadNearbySupercharges() {
-        viewModelScope.launch {
-            _state.value = _state.value.copy(
-                nearbySuperchargesState = NearbySuperchargesState.Loading
-            )
-            try {
-                val nearbySuperCharges = nearbySuperchargesUseCase.get().map { mapper.mapToNearbySupercharge(it) }
-                _state.value = _state.value.copy(
-                    nearbySuperchargesState = NearbySuperchargesState.Success(
-                        data = nearbySuperCharges
-                    )
-                )
-            } catch (e: Throwable) {
-                _state.value = _state.value.copy(
-                    nearbySuperchargesState = NearbySuperchargesState.Error(e.message)
-                )
+                } catch (ex: Throwable) {
+                    _state.value = AboutCarState.Error(ex.message)
+                }
             }
         }
     }

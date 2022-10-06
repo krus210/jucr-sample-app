@@ -17,10 +17,11 @@ import com.example.jucrsampleapp.R
 @Composable
 fun StatisticTitle(
     @StringRes titleRes: Int,
-    onClick: () -> Unit
+    onClick: (String?) -> Unit
 ) {
     Row(
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier
+            .fillMaxWidth()
             .padding(start = 16.dp, end = 16.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
@@ -29,7 +30,7 @@ fun StatisticTitle(
             text = stringResource(titleRes),
             style = MaterialTheme.typography.h6
         )
-        IconButton(onClick = onClick) {
+        IconButton(onClick = { onClick(null) }) {
             Icon(
                 painter = painterResource(R.drawable.ellipsis_solid),
                 contentDescription = null,

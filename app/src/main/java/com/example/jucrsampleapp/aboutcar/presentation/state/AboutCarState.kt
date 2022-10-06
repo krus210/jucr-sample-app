@@ -1,14 +1,16 @@
 package com.example.jucrsampleapp.aboutcar.presentation.state
 
-import androidx.annotation.StringRes
-import com.example.jucrsampleapp.R
+import com.example.jucrsampleapp.aboutcar.presentation.model.CarInfoModel
+import com.example.jucrsampleapp.aboutcar.presentation.model.ItemModel
 
-data class AboutCarState(
-    val carInfoState: CarInfoState = CarInfoState.Loading(isCollapsed = false),
-    @StringRes val statisticTitle: Int = R.string.statistics_title,
-    val statisticsState: StatisticsState = StatisticsState.Loading,
-    @StringRes val nearbySuperchargesTitle: Int = R.string.nearby_supercharger_title,
-    @StringRes val nearbySuperchargesSubtitle: Int = R.string.nearby_supercharger_subtitle,
-    val nearbySuperchargesState: NearbySuperchargesState = NearbySuperchargesState.Loading
-)
+sealed class AboutCarState {
 
+    data class Success(
+        val carInfo: CarInfoModel,
+        val data: List<ItemModel>
+    ) : AboutCarState()
+
+    object Loading : AboutCarState()
+
+    data class Error(val errorMessage: String?) : AboutCarState()
+}
