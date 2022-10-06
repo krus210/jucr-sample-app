@@ -1,6 +1,5 @@
 package com.example.jucrsampleapp.aboutcar.presentation.ui
 
-import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -17,23 +16,13 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import com.example.jucrsampleapp.aboutcar.presentation.model.Statistic
-import com.example.jucrsampleapp.aboutcar.presentation.state.StatisticsState
+import com.example.jucrsampleapp.aboutcar.presentation.model.StatisticItemModel
 
 @Composable
-fun Statistics(state: StatisticsState, onClick: (String?) -> Unit) {
-    when (state) {
-        is StatisticsState.Success -> StatisticSuccess(statistics = state.data, onClick)
-        StatisticsState.Loading -> StatisticLoading()
-        is StatisticsState.Error -> StatisticError(state.message)
-    }
-}
-
-@Composable
-fun StatisticSuccess(statistics: List<Statistic>, onClick: (String?) -> Unit) {
+fun Statistics(statistics: List<StatisticItemModel>, onClick: (String?) -> Unit) {
     LazyRow(
         modifier = Modifier.fillMaxWidth(),
-        contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
+        contentPadding = PaddingValues(horizontal = 16.dp),
         horizontalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         items(
@@ -46,7 +35,7 @@ fun StatisticSuccess(statistics: List<Statistic>, onClick: (String?) -> Unit) {
 }
 
 @Composable
-fun StatisticItem(statistic: Statistic, onClick: (String?) -> Unit) {
+fun StatisticItem(statistic: StatisticItemModel, onClick: (String?) -> Unit) {
     Card(
         modifier = Modifier
             .clickable { onClick(statistic.deeplink) }
@@ -87,14 +76,4 @@ fun StatisticItem(statistic: Statistic, onClick: (String?) -> Unit) {
             )
         }
     }
-}
-
-@Composable
-fun StatisticLoading() {
-  //TODO
-}
-
-@Composable
-fun StatisticError(message: String?) {
-    //TODO
 }

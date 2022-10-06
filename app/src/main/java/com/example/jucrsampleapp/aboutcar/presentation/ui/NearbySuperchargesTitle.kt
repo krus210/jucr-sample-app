@@ -13,7 +13,8 @@ import com.example.jucrsampleapp.R
 @Composable
 fun NearbySuperChargesTitle(
     @StringRes titleRes: Int,
-    onClick: () -> Unit
+    @StringRes subtitleRes: Int,
+    onClick: (String?) -> Unit
 ) {
     Row(
         modifier = Modifier
@@ -26,9 +27,9 @@ fun NearbySuperChargesTitle(
             text = stringResource(titleRes),
             style = MaterialTheme.typography.h6
         )
-        TextButton(onClick = onClick) {
+        TextButton(onClick = { onClick(null) }) {
             Text(
-                text = stringResource(R.string.nearby_supercharger_subtitle),
+                text = stringResource(subtitleRes),
                 color = MaterialTheme.colors.onSurface
             )
         }
